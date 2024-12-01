@@ -1,0 +1,4 @@
+# ignore any input files. 
+# This is done such that other user may execute against their own data
+*.txt
+!.gitignore
