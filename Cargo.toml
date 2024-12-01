@@ -1,0 +1,13 @@
+[package]
+name = "aoc-speed"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+aoc_macro = {path = "./aoc_macro"}
+dotenv = "0.15.0"
+
+[workspace]
+members = [
+	"aoc_macro",
+]
