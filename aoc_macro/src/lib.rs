@@ -75,25 +75,27 @@ pub fn ensure_filename(day_str: &str, filename: &'static str)
 #[macro_export]
 macro_rules! execute {
     ($module:ident) => {
-        fn execute() -> Result<(), aoc_macro::AocError> {
-            let filename = concat!("input/", stringify!($module), ".txt");
+        {
+            fn execute() -> Result<(), aoc_macro::AocError> {
+                let filename = concat!("input/", stringify!($module), ".txt");
 
-            let day_str = stringify!($module);
-            aoc_macro::ensure_filename(day_str, filename)?;
+                let day_str = stringify!($module);
+                aoc_macro::ensure_filename(day_str, filename)?;
 
-            let input = std::fs::read_to_string(filename)
-                .map_err(|_| aoc_macro::AocError::Read(filename))?;
+                let input = std::fs::read_to_string(filename)
+                    .map_err(|_| aoc_macro::AocError::Read(filename))?;
 
-            let answer = $module::part1(&input);
-            println!("{} part1: {}", day_str, answer);
+                let answer = $module::part1(&input);
+                println!("{} part1: {}", day_str, answer);
 
-            let answer = $module::part2(&input);
-            println!("{} part2: {}", day_str, answer);
-            Ok(())
-        };
+                let answer = $module::part2(&input);
+                println!("{} part2: {}", day_str, answer);
+                Ok(())
+            };
 
-        if let Err(error) = execute() {
-            eprintln!("ERROR: {:?}", error);
+            if let Err(error) = execute() {
+                eprintln!("ERROR: {:?}", error);
+            }
         }
     }
 }
